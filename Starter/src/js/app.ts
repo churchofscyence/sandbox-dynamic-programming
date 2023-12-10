@@ -1,19 +1,26 @@
 console.log('App is running!');
 
+//To install jquery locally run "npm i --save-dev @types/jquery"
+
 $(function(){
     $('#show').on('click' , function(){
          //alert("I've been clicked!");
 
-         const c = document.getElementById("myCanvas")!;
+         const canvas = <HTMLCanvasElement> document.getElementById("myCanvas")!;
 
-         // @ts-ignore
-         const ctx = c.getContext("2d");
+         if( typeof canvas === "object"){
+          const ctx = canvas.getContext("2d");
 
-         ctx.beginPath();
-         ctx.fillStyle = "red";
-         ctx.fillRect(20, 20, 300, 50);
+          if( ctx !== null){
+               ctx.beginPath();
+               ctx.fillStyle = "red";
+               ctx.fillRect(20, 20, 300, 50);
+      
+               ctx.stroke();
+          }
 
-         ctx.stroke();
+         }
+
 
     });
  });

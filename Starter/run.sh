@@ -15,3 +15,6 @@ tsc
 
 echo "Running Gulp..."
 gulp
+
+echo "Starting Lite Server..."
+npm start

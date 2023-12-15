@@ -1,7 +1,9 @@
-"use strict";
+import { GraphDiagram } from './decorators/graph-diagram.js';
 console.log('App is running!');
 $(function () {
     $('#show').on('click', function () {
+        let graph = new GraphDiagram();
+        graph.showStatus();
         const canvas = document.getElementById("myCanvas");
         if (typeof canvas === "object") {
             const ctx = canvas.getContext("2d");

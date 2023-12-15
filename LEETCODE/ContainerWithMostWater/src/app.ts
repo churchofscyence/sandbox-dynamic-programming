@@ -1,16 +1,20 @@
 
-import {GraphDiagram} from './decorators/graph-diagram.js';
+import { Graph } from './models/graph-model.js';
 
 console.log('App is running!');
 
 //To install jquery locally run "npm i --save-dev @types/jquery"
 
 $(function(){
+
+
+
     $('#show').on('click' , function(){
          //alert("I've been clicked!");
 
-         let graph = new GraphDiagram();
-         graph.showStatus();
+         let graph = new Graph([1,8,6,2,5,4,8,3,7] );
+
+         console.log(graph.state);
 
          const canvas = <HTMLCanvasElement> document.getElementById("myCanvas")!;
 

@@ -1,9 +1,9 @@
-import { GraphDiagram } from './decorators/graph-diagram.js';
+import { Graph } from './models/graph-model.js';
 console.log('App is running!');
 $(function () {
     $('#show').on('click', function () {
-        let graph = new GraphDiagram();
-        graph.showStatus();
+        let graph = new Graph([1, 8, 6, 2, 5, 4, 8, 3, 7]);
+        console.log(graph.state);
         const canvas = document.getElementById("myCanvas");
         if (typeof canvas === "object") {
             const ctx = canvas.getContext("2d");

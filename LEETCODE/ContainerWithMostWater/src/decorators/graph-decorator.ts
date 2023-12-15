@@ -1,12 +1,24 @@
+export function Points(target: any, propertyName: string) {
 
-export function GraphDiagram(target: any, propertyName: string) {
+    console.log('Graph Decorator - Points is running!');
 
-    console.log('GraphDiagram decorator is running!');
+    let _points: number;
 
-    let points: number = target[propertyName];
+    Object.defineProperty(target, propertyName, {
+        set: (newPoints: number) => {
+            _points = newPoints;
+            console.log("Graph Decorator -  Points: " + _points);
+        },
+        get: () => _points
+    });
+}
 
-    console.log("Points: " + points);
+export function GraphDiagram (template :any) {
+    console.log("Graph Decorator -  GraphDiagram");
 
-    console.log("Target : " + target);
-    console.log(" Property Name: " + propertyName);
+    return function(constructor:any){
+        console.log(template);  
+
+    }
+
 }

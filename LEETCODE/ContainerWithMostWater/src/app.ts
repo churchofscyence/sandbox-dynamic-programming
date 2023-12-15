@@ -12,7 +12,7 @@ $(function(){
     $('#show').on('click' , function(){
          //alert("I've been clicked!");
 
-         let graph = new Graph([1,8,6,2,5,4,8,3,7] );
+         let graph = new Graph( [1,8,6,2,5,4,8,3,7] );
 
          console.log(graph.state);
 

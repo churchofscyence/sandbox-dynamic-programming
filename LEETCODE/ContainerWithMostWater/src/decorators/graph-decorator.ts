@@ -8,17 +8,27 @@ export function Points(target: any, propertyName: string) {
         set: (newPoints: number) => {
             _points = newPoints;
             console.log("Graph Decorator -  Points: " + _points);
+
+            console.log( "Logo: " + $("#logo").text() ); 
         },
         get: () => _points
     });
 }
 
-export function GraphDiagram (template :any) {
-    console.log("Graph Decorator -  GraphDiagram");
+export function GraphDiagram (data : any)  {
 
-    return function(constructor:any){
-        console.log(template);  
+    return function(constructor: Function) {
+        
+        console.log('Graph Decorator - GraphDiagram is running!');
+        console.log("Data: " +data);    
 
+        console.log("DistanceBar: " +data.distanceBar);
+        if(typeof data.distanceBar !== 'undefined'){
+            constructor.prototype._distanceBar = data.distanceBar;
+
+            console.log( "Logo: " + $("#logo").text() ); 
+        }
+        
     }
-
+    
 }

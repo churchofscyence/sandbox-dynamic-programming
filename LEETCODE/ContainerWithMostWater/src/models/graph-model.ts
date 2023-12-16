@@ -1,10 +1,11 @@
 import {GraphDiagram,Points} from '../decorators/graph-decorator.js';
 
-@GraphDiagram( "{distanceBar:30}" )
+@GraphDiagram( { distanceBar:30 } )
 export class Graph{
 
     @Points
     _state:number[];
+    _distanceBar:number = 10;
 
     constructor(state: number[]) {
         this._state = state;

@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 import { GraphDiagram, Points } from '../decorators/graph-decorator.js';
 let Graph = class Graph {
     constructor(state) {
+        this._distanceBar = 10;
         this._state = state;
     }
     get state() {
@@ -20,7 +21,7 @@ __decorate([
     Points
 ], Graph.prototype, "_state", void 0);
 Graph = __decorate([
-    GraphDiagram
+    GraphDiagram({ distanceBar: 30 })
 ], Graph);
 export { Graph };
 //# sourceMappingURL=graph-model.js.map

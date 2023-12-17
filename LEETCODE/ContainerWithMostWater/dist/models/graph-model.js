@@ -22,8 +22,10 @@ __decorate([
 ], Graph.prototype, "_state", void 0);
 Graph = __decorate([
     GraphDiagram({
-        distanceBar: 30,
-        nameCanvas: "graph-canvas"
+        distanceBar: 3,
+        nameCanvas: "graph-canvas",
+        scaleX: 40,
+        scaleY: 40
     })
 ], Graph);
 export { Graph };

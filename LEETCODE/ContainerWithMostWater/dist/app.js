@@ -6,16 +6,8 @@ $(function () {
         console.log(graph.state);
         if (graph._ctx !== null) {
             graph._ctx.beginPath();
-            graph._ctx.moveTo(100, 500);
-            graph._ctx.lineTo(700, 500);
-            graph._ctx.stroke();
-            graph._ctx.beginPath();
-            graph._ctx.moveTo(160, 480);
-            graph._ctx.lineTo(160, 500);
-            graph._ctx.stroke();
-            graph._ctx.beginPath();
-            graph._ctx.moveTo(220, 340);
-            graph._ctx.lineTo(220, 500);
+            graph._ctx.moveTo(500, 500);
+            graph._ctx.lineTo(500, 1600);
             graph._ctx.stroke();
         }
     });

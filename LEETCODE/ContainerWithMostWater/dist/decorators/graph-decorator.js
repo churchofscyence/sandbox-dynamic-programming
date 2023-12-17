@@ -1,6 +1,6 @@
-let _points;
 export function Points(target, propertyName) {
     console.log('Graph Decorator - Points is running!');
+    let _points;
     Object.defineProperty(target, propertyName, {
         set: (newPoints) => {
             _points = newPoints;
@@ -25,7 +25,6 @@ export function GraphDiagram(data) {
             constructor.prototype._scaleY = data.scaleY;
             constructor.prototype.buildCanvas();
             console.log("Logo: " + $("#logo").text());
-            console.log(_points);
         }
     };
 }

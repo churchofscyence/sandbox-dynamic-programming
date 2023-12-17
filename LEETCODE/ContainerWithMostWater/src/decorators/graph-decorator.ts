@@ -39,8 +39,6 @@ export function GraphDiagram (data : any)  {
             constructor.prototype.buildCanvas();
 
             console.log( "Logo: " + $("#logo").text() ); 
-
-            console.log( _points )
         }
         
     }

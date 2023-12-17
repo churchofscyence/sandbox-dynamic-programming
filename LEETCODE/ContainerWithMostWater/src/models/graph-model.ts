@@ -1,13 +1,17 @@
-import {GraphDiagram,Points} from '../decorators/graph-decorator.js';
+import {GraphDiagram, Base, Points} from '../decorators/graph-decorator.js';
 
-@GraphDiagram( { distanceBar:30 } )
-export class Graph{
+@GraphDiagram({ 
+    distanceBar:30, 
+    nameCanvas:"graph-canvas"
+})
+export class Graph extends Base{
 
     @Points
     _state:number[];
-    _distanceBar:number = 10;
+    
 
     constructor(state: number[]) {
+        super();
         this._state = state;
     }
 

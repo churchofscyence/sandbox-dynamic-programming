@@ -7,8 +7,6 @@ console.log('App is running!');
 
 $(function(){
 
-
-
     $('#show').on('click' , function(){
          //alert("I've been clicked!");
 
@@ -16,41 +14,39 @@ $(function(){
 
          console.log(graph.state);
 
-         const canvas = <HTMLCanvasElement> document.getElementById("myCanvas")!;
-
-         if( typeof canvas === "object"){
-          const ctx = canvas.getContext("2d");
-
-          if( ctx !== null){
+          if( graph._ctx !== null){
 
                // Start a new Path
-               ctx.beginPath();
-               ctx.moveTo(100, 500);
-               ctx.lineTo(700, 500);
+               graph._ctx.beginPath();
+               graph._ctx.moveTo(100, 500);
+               graph._ctx.lineTo(700, 500);
 
                // Draw the Path
-               ctx.stroke();
+               graph._ctx.stroke();
 
               // Start a new Path
-              ctx.beginPath();
-              ctx.moveTo(160, 480);
-              ctx.lineTo(160, 500);
+              graph._ctx.beginPath();
+              graph._ctx.moveTo(160, 480);
+              graph._ctx.lineTo(160, 500);
                
               // Draw the Path
-              ctx.stroke();
+              graph._ctx.stroke();
 
               // Start a new Path
-              ctx.beginPath();
-              ctx.moveTo(220, 340);
-              ctx.lineTo(220, 500);
+              graph._ctx.beginPath();
+              graph._ctx.moveTo(220, 340);
+              graph._ctx.lineTo(220, 500);
                                              
                // Draw the Path
-              ctx.stroke();
+               graph._ctx.stroke();
 
           }
 
-         }
 
 
-    });
- });
+
+
+     });
+
+     
+});

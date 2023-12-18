@@ -1,9 +1,11 @@
 export function Points(target: any, propertyName: string) {
     let _points: number;
 
+
     Object.defineProperty(target, propertyName, {
         set: (newPoints: number) => {
 
+            console.log(propertyName);
             console.log('Graph Decorator - Points is running!');
 
             _points = newPoints;
@@ -24,8 +26,8 @@ export function GraphDiagram (data : any)  {
         console.log('Graph Decorator - GraphDiagram is running!');
         console.log("Data: " + JSON.stringify(data) );    
 
-        console.log("DistanceBar: " +data.distanceBar);
-        if(typeof data.distanceBar !== 'undefined'){
+            $("#distanceBar").text(data.distanceBar);
+
             constructor.prototype._distanceBar = data.distanceBar;
             constructor.prototype._nameCanvas = data.nameCanvas;
             constructor.prototype._width = data.width;
@@ -35,8 +37,7 @@ export function GraphDiagram (data : any)  {
         
             constructor.prototype.buildCanvas();
 
-            console.log( "Logo: " + $("#logo").text() ); 
-        }
+
         
     }
     
@@ -44,14 +45,14 @@ export function GraphDiagram (data : any)  {
 
 export class Base{
 
-    _distanceBar:number = 10;
-    _nameCanvas:string = "canvas";
+    _distanceBar!:number;
+    _nameCanvas!:string;
     _canvas! :HTMLCanvasElement;
     _ctx!:CanvasRenderingContext2D;
-    _widthCanvas:number = 0;
-    _heightCanvas:number = 0;
-    _scaleX:number = 1;
-    _scaleY:number = 1;
+    _widthCanvas!:number;
+    _heightCanvas!:number;
+    _scaleX!:number;
+    _scaleY!:number;
 
     public constructor(){
     }

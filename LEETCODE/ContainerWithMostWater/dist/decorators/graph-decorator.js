@@ -2,6 +2,7 @@ export function Points(target, propertyName) {
     let _points;
     Object.defineProperty(target, propertyName, {
         set: (newPoints) => {
+            console.log(propertyName);
             console.log('Graph Decorator - Points is running!');
             _points = newPoints;
             console.log("Graph Decorator -  Points: " + _points);
@@ -15,27 +16,18 @@ export function GraphDiagram(data) {
     return function (constructor) {
         console.log('Graph Decorator - GraphDiagram is running!');
         console.log("Data: " + JSON.stringify(data));
-        console.log("DistanceBar: " + data.distanceBar);
-        if (typeof data.distanceBar !== 'undefined') {
-            constructor.prototype._distanceBar = data.distanceBar;
-            constructor.prototype._nameCanvas = data.nameCanvas;
-            constructor.prototype._width = data.width;
-            constructor.prototype._height = data.height;
-            constructor.prototype._scaleX = data.scaleX;
-            constructor.prototype._scaleY = data.scaleY;
-            constructor.prototype.buildCanvas();
-            console.log("Logo: " + $("#logo").text());
-        }
+        $("#distanceBar").text(data.distanceBar);
+        constructor.prototype._distanceBar = data.distanceBar;
+        constructor.prototype._nameCanvas = data.nameCanvas;
+        constructor.prototype._width = data.width;
+        constructor.prototype._height = data.height;
+        constructor.prototype._scaleX = data.scaleX;
+        constructor.prototype._scaleY = data.scaleY;
+        constructor.prototype.buildCanvas();
     };
 }
 export class Base {
     constructor() {
-        this._distanceBar = 10;
-        this._nameCanvas = "canvas";
-        this._widthCanvas = 0;
-        this._heightCanvas = 0;
-        this._scaleX = 1;
-        this._scaleY = 1;
     }
     get distanceBar() { return this._distanceBar; }
     set distanceBar(value) { this._distanceBar = value; }

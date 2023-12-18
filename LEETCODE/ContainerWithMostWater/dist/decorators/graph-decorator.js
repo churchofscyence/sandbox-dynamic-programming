@@ -1,8 +1,8 @@
 export function Points(target, propertyName) {
-    console.log('Graph Decorator - Points is running!');
     let _points;
     Object.defineProperty(target, propertyName, {
         set: (newPoints) => {
+            console.log('Graph Decorator - Points is running!');
             _points = newPoints;
             console.log("Graph Decorator -  Points: " + _points);
             console.log("Logo: " + $("#logo").text());

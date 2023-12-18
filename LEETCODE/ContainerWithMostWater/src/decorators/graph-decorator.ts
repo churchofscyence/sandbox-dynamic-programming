@@ -11,6 +11,8 @@ export function Points(target: any, propertyName: string) {
             _points = newPoints;
             console.log("Graph Decorator -  Points: " + _points);
 
+            target.buildGraph(_points)
+
             console.log( "Logo: " + $("#logo").text() ); 
 
             $("#points").text( _points.toString() ); 
@@ -34,11 +36,10 @@ export function GraphDiagram (data : any)  {
             constructor.prototype._height = data.height;
             constructor.prototype._scaleX = data.scaleX;
             constructor.prototype._scaleY = data.scaleY;
+            constructor.prototype._startX = data.startX;
+            constructor.prototype._startY = data.startY;
         
-            constructor.prototype.buildCanvas();
-
-
-        
+            constructor.prototype.buildCanvas();  
     }
     
 }
@@ -53,6 +54,8 @@ export class Base{
     _heightCanvas!:number;
     _scaleX!:number;
     _scaleY!:number;
+    _startX!:number;
+    _startY!:number;
 
     public constructor(){
     }
@@ -81,6 +84,12 @@ export class Base{
     get scaleY(): number {return this._scaleY;}
     set scaleY(value: number) {this._scaleY = value;}
 
+    get startX(): number {return this._startX;}
+    set startX(value: number) {this._startX = value;}
+
+    get startY(): number {return this._startY;}
+    set startY(value: number) {this._startY = value;}
+
 
     buildCanvas(){
         this._canvas = <HTMLCanvasElement> document.getElementById(this._nameCanvas)!;
@@ -101,6 +110,74 @@ export class Base{
         }
        
     }
+
+    buildGraph(state: number[]){
+
+        if(this._ctx !== null){
+
+            // Start a new Path of the horizontal line
+            this._ctx.beginPath();
+            let startPoint = this.pointScale(this._startX, this._startY);
+            this._ctx.moveTo(startPoint.x, startPoint.y);
+
+            let endPoint = this.pointScale(this._startX + (this._distanceBar* state.length), this._startY);
+            this._ctx.lineTo(endPoint.y , endPoint.y);
+                        
+            // Draw the Path
+            this._ctx.stroke();
+
+            // Start a new Path of the vertical line
+            this._ctx.beginPath();
+
+            let x = this._startX;
+            for (let i = 0; i < state.length; i++){
+
+                console.log(x);
+
+            }
+
+        }
+
+    }
+
+
+    /**
+     * Returns a point object with the x and y coordinates scaled according to the current scale of the canvas
+     * @param x - the x coordinate of the point
+     * @param y - the y coordinate of the point
+     */
+    pointScale(x: number, y: number): { x: number, y: number } {
+        return {
+            x: x * this._scaleX,
+            y: y * this._scaleY,
+        };
+    }
+
+    buildLinePoints(state: number[]) {
+
+        let results :{ x1 :number, y1 :number, x2 :number, y2:number } [] = [];
+
+        let start_x = this._startX;
+        let start_y = this._startY;
+
+        for(let i = 0; i < state.length; i++) {
+            let points = {x1 :0, y1 : 0, x2 : 0, y2 : 0};
+
+            points.x1 = start_x;
+            points.y1 = start_y;
+
+            start_x = start_x + this._distanceBar;
+
+
+
+            results.push(points);
+        }
+
+
+        return results;
+
+    }
+
 
 
 }

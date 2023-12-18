@@ -1,10 +1,12 @@
 import {GraphDiagram, Base, Points} from '../decorators/graph-decorator.js';
 
 @GraphDiagram({ 
-    distanceBar:3, 
+    distanceBar:2, 
     nameCanvas:"graph-canvas",
     scaleX:40,
-    scaleY:40
+    scaleY:40,
+    startX:1,
+    startY:14
 })
 export class Graph extends Base{
 
@@ -17,11 +19,6 @@ export class Graph extends Base{
         this._state = state;
     }
 
-    get state(): number[] {
-        return this._state;
-    }
-
-    set state(value: number[]) {
-        this._state = value;
-    }
+    get state(): number[] {return this._state;}
+    set state(value: number[]) {this._state = value;}
 }

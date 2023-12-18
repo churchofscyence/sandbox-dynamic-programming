@@ -10,22 +10,20 @@ let Graph = class Graph extends Base {
         super();
         this._state = state;
     }
-    get state() {
-        return this._state;
-    }
-    set state(value) {
-        this._state = value;
-    }
+    get state() { return this._state; }
+    set state(value) { this._state = value; }
 };
 __decorate([
     Points
 ], Graph.prototype, "_state", void 0);
 Graph = __decorate([
     GraphDiagram({
-        distanceBar: 3,
+        distanceBar: 2,
         nameCanvas: "graph-canvas",
         scaleX: 40,
-        scaleY: 40
+        scaleY: 40,
+        startX: 1,
+        startY: 14
     })
 ], Graph);
 export { Graph };

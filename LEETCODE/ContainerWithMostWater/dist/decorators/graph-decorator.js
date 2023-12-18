@@ -6,6 +6,7 @@ export function Points(target, propertyName) {
             console.log('Graph Decorator - Points is running!');
             _points = newPoints;
             console.log("Graph Decorator -  Points: " + _points);
+            target.buildGraph(_points);
             console.log("Logo: " + $("#logo").text());
             $("#points").text(_points.toString());
         },
@@ -23,6 +24,8 @@ export function GraphDiagram(data) {
         constructor.prototype._height = data.height;
         constructor.prototype._scaleX = data.scaleX;
         constructor.prototype._scaleY = data.scaleY;
+        constructor.prototype._startX = data.startX;
+        constructor.prototype._startY = data.startY;
         constructor.prototype.buildCanvas();
     };
 }
@@ -45,6 +48,10 @@ export class Base {
     set scaleX(value) { this._scaleX = value; }
     get scaleY() { return this._scaleY; }
     set scaleY(value) { this._scaleY = value; }
+    get startX() { return this._startX; }
+    set startX(value) { this._startX = value; }
+    get startY() { return this._startY; }
+    set startY(value) { this._startY = value; }
     buildCanvas() {
         this._canvas = document.getElementById(this._nameCanvas);
         if (typeof this._canvas === "object") {
@@ -58,6 +65,40 @@ export class Base {
         if (typeof $("#" + this._nameCanvas).attr("height") !== "undefined") {
             this._heightCanvas = Number($("#" + this._nameCanvas).attr("height"));
         }
+    }
+    buildGraph(state) {
+        if (this._ctx !== null) {
+            this._ctx.beginPath();
+            let startPoint = this.pointScale(this._startX, this._startY);
+            this._ctx.moveTo(startPoint.x, startPoint.y);
+            let endPoint = this.pointScale(this._startX + (this._distanceBar * state.length), this._startY);
+            this._ctx.lineTo(endPoint.y, endPoint.y);
+            this._ctx.stroke();
+            this._ctx.beginPath();
+            let x = this._startX;
+            for (let i = 0; i < state.length; i++) {
+                console.log(x);
+            }
+        }
+    }
+    pointScale(x, y) {
+        return {
+            x: x * this._scaleX,
+            y: y * this._scaleY,
+        };
+    }
+    buildLinePoints(state) {
+        let results = [];
+        let start_x = this._startX;
+        let start_y = this._startY;
+        for (let i = 0; i < state.length; i++) {
+            let points = { x1: 0, y1: 0, x2: 0, y2: 0 };
+            points.x1 = start_x;
+            points.y1 = start_y;
+            start_x = start_x + this._distanceBar;
+            results.push(points);
+        }
+        return results;
     }
 }
 //# sourceMappingURL=graph-decorator.js.map

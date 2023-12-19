@@ -3,8 +3,10 @@ import {GraphDiagram, Base, Points} from '../decorators/graph-decorator.js';
 @GraphDiagram({ 
     distanceBar:2, 
     nameCanvas:"graph-canvas",
+
     scaleX:40,
     scaleY:40,
+
     startX:1,
     startY:14
 })

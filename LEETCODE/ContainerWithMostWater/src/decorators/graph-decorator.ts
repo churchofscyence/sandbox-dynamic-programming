@@ -1,3 +1,32 @@
+export class LinePoints {
+
+    private _index :number;
+
+    private _x1 :number = 0;
+    private _y1 :number = 0;
+    private _x2 :number = 0;
+    private _y2 :number = 0;
+
+    constructor(index: number ) {
+        this._index = index;
+    }
+
+    get index(): number {return this._index;}
+    set index(value: number) {this._index = value;}
+
+    get x1(): number {return this._x1;}
+    set x1(value: number) {this._x1 = value;}
+
+    get y1(): number {return this._y1;}
+    set y1(value: number) {this._y1 = value;}
+
+    get x2(): number {return this._x2;}
+    set x2(value: number) {this._x2 = value;}
+
+    get y2(): number {return this._y2;}
+    set y2(value: number) {this._y2 = value;}
+}
+
 export function Points(target: any, propertyName: string) {
     let _points: number;
 
@@ -115,25 +144,29 @@ export class Base{
 
         if(this._ctx !== null){
 
-            // Start a new Path of the horizontal line
-            this._ctx.beginPath();
-            let startPoint = this.pointScale(this._startX, this._startY);
-            this._ctx.moveTo(startPoint.x, startPoint.y);
+            // Start a new Path of the vertical lines
+            let results:LinePoints[] = this.buildLinePoints(state)
 
-            let endPoint = this.pointScale(this._startX + (this._distanceBar* state.length), this._startY);
-            this._ctx.lineTo(endPoint.y , endPoint.y);
-                        
-            // Draw the Path
-            this._ctx.stroke();
+            for (let i = 0; i < results.length; i++){
 
-            // Start a new Path of the vertical line
-            this._ctx.beginPath();
+                this._ctx.beginPath();
+                this._ctx.lineWidth = 6;
 
-            let x = this._startX;
-            for (let i = 0; i < state.length; i++){
+                let startLine = this.pointScale(results[i].x1 , results[i].y1);
+                console.log( " x1 : " + startLine.x + " y1: " + startLine.y);
+                this._ctx.moveTo(startLine.x, startLine.y);
 
-                console.log(x);
+                let endLine = this.pointScale(results[i].x2 , results[i].y2 );
+                console.log( " x2 : " + endLine.x +" y2: " + endLine.y);
+                this._ctx.lineTo(endLine.x, endLine.y);
 
+                console.log( "_____________________________________________________________");
+
+                this._ctx.stroke();
+
+                        //Text 
+                        this._ctx.font = "30px Arial";
+                        this._ctx.fillText(state[i].toString(),endLine.x ,endLine.y -1);
             }
 
         }
@@ -155,24 +188,27 @@ export class Base{
 
     buildLinePoints(state: number[]) {
 
-        let results :{ x1 :number, y1 :number, x2 :number, y2:number } [] = [];
-
-        let start_x = this._startX;
-        let start_y = this._startY;
+        let results:LinePoints[] = [];
+        let initFlag:boolean = true;
 
         for(let i = 0; i < state.length; i++) {
-            let points = {x1 :0, y1 : 0, x2 : 0, y2 : 0};
 
-            points.x1 = start_x;
-            points.y1 = start_y;
+            let linePoint = new LinePoints(i);
 
-            start_x = start_x + this._distanceBar;
+            if(initFlag){
+                initFlag = false;
+                linePoint.x1 = this._startX;
+            }else{
+                linePoint.x1 = results[i-1] .x1 + this._distanceBar;
+            }
+            // Make all the lines are in straight line horizontally.
+            linePoint.x2 = linePoint.x1;
+            linePoint.y1 = this._startY;
 
+            linePoint.y2 = linePoint.y1 - state[i];
 
-
-            results.push(points);
+            results.push(linePoint);
         }
-
 
         return results;
 

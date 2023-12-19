@@ -31,7 +31,6 @@ The second terminal to start TypeScript Compile with watch mode:
 > starter@1.0.0 test
 > jest
 
- PASS  src/spec/math.spec.ts
  PASS  src/spec/graph-decorator.spec.ts
 
 Test Suites: 2 passed, 2 total

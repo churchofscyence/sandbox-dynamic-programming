@@ -1,3 +1,22 @@
+export class LinePoints {
+    constructor(index) {
+        this._x1 = 0;
+        this._y1 = 0;
+        this._x2 = 0;
+        this._y2 = 0;
+        this._index = index;
+    }
+    get index() { return this._index; }
+    set index(value) { this._index = value; }
+    get x1() { return this._x1; }
+    set x1(value) { this._x1 = value; }
+    get y1() { return this._y1; }
+    set y1(value) { this._y1 = value; }
+    get x2() { return this._x2; }
+    set x2(value) { this._x2 = value; }
+    get y2() { return this._y2; }
+    set y2(value) { this._y2 = value; }
+}
 export function Points(target, propertyName) {
     let _points;
     Object.defineProperty(target, propertyName, {
@@ -68,16 +87,20 @@ export class Base {
     }
     buildGraph(state) {
         if (this._ctx !== null) {
-            this._ctx.beginPath();
-            let startPoint = this.pointScale(this._startX, this._startY);
-            this._ctx.moveTo(startPoint.x, startPoint.y);
-            let endPoint = this.pointScale(this._startX + (this._distanceBar * state.length), this._startY);
-            this._ctx.lineTo(endPoint.y, endPoint.y);
-            this._ctx.stroke();
-            this._ctx.beginPath();
-            let x = this._startX;
-            for (let i = 0; i < state.length; i++) {
-                console.log(x);
+            let results = this.buildLinePoints(state);
+            for (let i = 0; i < results.length; i++) {
+                this._ctx.beginPath();
+                this._ctx.lineWidth = 6;
+                let startLine = this.pointScale(results[i].x1, results[i].y1);
+                console.log(" x1 : " + startLine.x + " y1: " + startLine.y);
+                this._ctx.moveTo(startLine.x, startLine.y);
+                let endLine = this.pointScale(results[i].x2, results[i].y2);
+                console.log(" x2 : " + endLine.x + " y2: " + endLine.y);
+                this._ctx.lineTo(endLine.x, endLine.y);
+                console.log("_____________________________________________________________");
+                this._ctx.stroke();
+                this._ctx.font = "30px Arial";
+                this._ctx.fillText(state[i].toString(), endLine.x, endLine.y - 1);
             }
         }
     }
@@ -89,14 +112,20 @@ export class Base {
     }
     buildLinePoints(state) {
         let results = [];
-        let start_x = this._startX;
-        let start_y = this._startY;
+        let initFlag = true;
         for (let i = 0; i < state.length; i++) {
-            let points = { x1: 0, y1: 0, x2: 0, y2: 0 };
-            points.x1 = start_x;
-            points.y1 = start_y;
-            start_x = start_x + this._distanceBar;
-            results.push(points);
+            let linePoint = new LinePoints(i);
+            if (initFlag) {
+                initFlag = false;
+                linePoint.x1 = this._startX;
+            }
+            else {
+                linePoint.x1 = results[i - 1].x1 + this._distanceBar;
+            }
+            linePoint.x2 = linePoint.x1;
+            linePoint.y1 = this._startY;
+            linePoint.y2 = linePoint.y1 - state[i];
+            results.push(linePoint);
         }
         return results;
     }

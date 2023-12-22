@@ -25,6 +25,12 @@ export class LinePoints {
 
     get y2(): number {return this._y2;}
     set y2(value: number) {this._y2 = value;}
+
+
+    toString(): string {
+
+        return "{ x1:" + this._x1 +" y1:" +  this._y1 + " x2:" + this._x2 + " y2:" + this._y2  + " }";        
+    }
 }
 
 export function Points(target: any, propertyName: string) {
@@ -34,17 +40,13 @@ export function Points(target: any, propertyName: string) {
     Object.defineProperty(target, propertyName, {
         set: (newPoints: number) => {
 
+            console.log('Graph Decorator - Set Points is running!');
             console.log(propertyName);
-            console.log('Graph Decorator - Points is running!');
-
+            
             _points = newPoints;
-            console.log("Graph Decorator -  Points: " + _points);
+            console.log("Points: " + _points);
 
             target.buildGraph(_points)
-
-            console.log( "Logo: " + $("#logo").text() ); 
-
-            $("#points").text( _points.toString() ); 
         },
         get: () => _points
     });
@@ -56,8 +58,6 @@ export function GraphDiagram (data : any)  {
         
         console.log('Graph Decorator - GraphDiagram is running!');
         console.log("Data: " + JSON.stringify(data) );    
-
-            $("#distanceBar").text(data.distanceBar);
 
             constructor.prototype._distanceBar = data.distanceBar;
             constructor.prototype._nameCanvas = data.nameCanvas;
@@ -85,6 +85,7 @@ export class Base{
     _scaleY!:number;
     _startX!:number;
     _startY!:number;
+    _pointList!:LinePoints[];
 
     public constructor(){
     }
@@ -119,6 +120,9 @@ export class Base{
     get startY(): number {return this._startY;}
     set startY(value: number) {this._startY = value;}
 
+    get pointList(): LinePoints[] {return this._pointList;}
+    set pointList(value: LinePoints[]) {this._pointList = value;}
+
 
     buildCanvas(){
         this._canvas = <HTMLCanvasElement> document.getElementById(this._nameCanvas)!;
@@ -144,13 +148,19 @@ export class Base{
 
         if(this._ctx !== null){
 
+            this._pointList = [];
+
             // Start a new Path of the vertical lines
             let results:LinePoints[] = this.buildLinePoints(state)
 
+            console.log( "_____________________ Horizontal Lines _____________________");
+            
             for (let i = 0; i < results.length; i++){
 
+                //Lines 
                 this._ctx.beginPath();
                 this._ctx.lineWidth = 6;
+                this._ctx.strokeStyle = "black";
 
                 let startLine = this.pointScale(results[i].x1 , results[i].y1);
                 console.log( " x1 : " + startLine.x + " y1: " + startLine.y);
@@ -160,14 +170,27 @@ export class Base{
                 console.log( " x2 : " + endLine.x +" y2: " + endLine.y);
                 this._ctx.lineTo(endLine.x, endLine.y);
 
-                console.log( "_____________________________________________________________");
+                let linePoints = new LinePoints(i);
+                linePoints.x1 = startLine.x;
+                linePoints.y1 = startLine.y;
+                linePoints.x2 = endLine.x;
+                linePoints.y2 = endLine.y;
+                this._pointList.push(linePoints);
 
                 this._ctx.stroke();
+                console.log( "______________________________");
 
-                        //Text 
-                        this._ctx.font = "30px Arial";
-                        this._ctx.fillText(state[i].toString(),endLine.x ,endLine.y -1);
+                //Height Text 
+                this._ctx.font = "30px Arial";
+                this._ctx.fillText(state[i].toString(),endLine.x - 30 ,endLine.y -1);
+                
+                //Index Text 
+
+                this._ctx.fillText(i.toString() ,startLine.x +10,startLine.y + 1);
+
             }
+
+            console.log( "____________________________________________________________");
 
         }
 
@@ -213,6 +236,8 @@ export class Base{
         return results;
 
     }
+
+
 
 
 

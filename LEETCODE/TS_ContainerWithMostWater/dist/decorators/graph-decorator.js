@@ -16,18 +16,19 @@ export class LinePoints {
     set x2(value) { this._x2 = value; }
     get y2() { return this._y2; }
     set y2(value) { this._y2 = value; }
+    toString() {
+        return "{ x1:" + this._x1 + " y1:" + this._y1 + " x2:" + this._x2 + " y2:" + this._y2 + " }";
+    }
 }
 export function Points(target, propertyName) {
     let _points;
     Object.defineProperty(target, propertyName, {
         set: (newPoints) => {
+            console.log('Graph Decorator - Set Points is running!');
             console.log(propertyName);
-            console.log('Graph Decorator - Points is running!');
             _points = newPoints;
-            console.log("Graph Decorator -  Points: " + _points);
+            console.log("Points: " + _points);
             target.buildGraph(_points);
-            console.log("Logo: " + $("#logo").text());
-            $("#points").text(_points.toString());
         },
         get: () => _points
     });
@@ -36,7 +37,6 @@ export function GraphDiagram(data) {
     return function (constructor) {
         console.log('Graph Decorator - GraphDiagram is running!');
         console.log("Data: " + JSON.stringify(data));
-        $("#distanceBar").text(data.distanceBar);
         constructor.prototype._distanceBar = data.distanceBar;
         constructor.prototype._nameCanvas = data.nameCanvas;
         constructor.prototype._width = data.width;
@@ -71,6 +71,8 @@ export class Base {
     set startX(value) { this._startX = value; }
     get startY() { return this._startY; }
     set startY(value) { this._startY = value; }
+    get pointList() { return this._pointList; }
+    set pointList(value) { this._pointList = value; }
     buildCanvas() {
         this._canvas = document.getElementById(this._nameCanvas);
         if (typeof this._canvas === "object") {
@@ -87,21 +89,32 @@ export class Base {
     }
     buildGraph(state) {
         if (this._ctx !== null) {
+            this._pointList = [];
             let results = this.buildLinePoints(state);
+            console.log("_____________________ Horizontal Lines _____________________");
             for (let i = 0; i < results.length; i++) {
                 this._ctx.beginPath();
                 this._ctx.lineWidth = 6;
+                this._ctx.strokeStyle = "black";
                 let startLine = this.pointScale(results[i].x1, results[i].y1);
                 console.log(" x1 : " + startLine.x + " y1: " + startLine.y);
                 this._ctx.moveTo(startLine.x, startLine.y);
                 let endLine = this.pointScale(results[i].x2, results[i].y2);
                 console.log(" x2 : " + endLine.x + " y2: " + endLine.y);
                 this._ctx.lineTo(endLine.x, endLine.y);
-                console.log("_____________________________________________________________");
+                let linePoints = new LinePoints(i);
+                linePoints.x1 = startLine.x;
+                linePoints.y1 = startLine.y;
+                linePoints.x2 = endLine.x;
+                linePoints.y2 = endLine.y;
+                this._pointList.push(linePoints);
                 this._ctx.stroke();
+                console.log("______________________________");
                 this._ctx.font = "30px Arial";
-                this._ctx.fillText(state[i].toString(), endLine.x, endLine.y - 1);
+                this._ctx.fillText(state[i].toString(), endLine.x - 30, endLine.y - 1);
+                this._ctx.fillText(i.toString(), startLine.x + 10, startLine.y + 1);
             }
+            console.log("____________________________________________________________");
         }
     }
     pointScale(x, y) {

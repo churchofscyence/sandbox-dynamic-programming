@@ -10,6 +10,25 @@
 
     <script type="module"  src='dist/app.js'></script>
 
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      </style>
+
+
 </head>
 <body>
 
@@ -25,6 +44,7 @@
                 </div>
                 <div>
                   <button id='next' type="button" class="btn btn-primary">Next</button>
+                 <!--  <button id='clear' type="button" class="btn btn-primary">Clear</button> --> 
                 </div> 
 
           </div>
@@ -32,20 +52,42 @@
 
             <div class="row">
               <div class="col">
+                <h3></h3>
                 <h3>Bars Height</h3>
-                <h3>Distance Between Bars</h3>
+                <h3>Bars Distance</h3>
+                <h3>Pointer</h3>
+                <h3>Comparer</h3>
               </div>
               <div class="col">
-                <h3 id="points"> &nbsp;</h3>
-                <h3 id="distanceBar"> &nbsp;</h3>
+                <h3 id="barsHeight"> &nbsp;</h3>
+                <h3 id="barsDistance"> &nbsp;</h3>
+                <h3 id="pointer"> &nbsp; </h3>
+                <h3 id="comparer"> &nbsp; </h3>
               </div>
-            </div>   
+            </div> 
+            
+            <br><br>
+
+            <table id="dataTable">
+              <tr>
+                <th>Index</th>
+                <th>Pointer</th>
+                <th>Comparer</th>
+                <th>Height</th>
+                <th>Width</th>
+                <th>Area</th>
+              </tr>
+              <tr>
+              </tr>
+            </table>
+
 
           </div>
         </div>
 
 
     </div>
+    <br><br><br>
     
 </body>
 </html>

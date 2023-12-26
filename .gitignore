@@ -2,7 +2,8 @@
 */*/*/node_modules/*
 */*/node_modules/*
 */node_modules/*
+
 */*/*/.idea/*
 */*/.idea/*
 
-LEETCODE/ContainerWithMostWater/Graphic_GUI/.vscode/launch.json
+*/*/*/.vscode/*

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>LEETCODE</title>
+    <script src='lib/public/jquery/dist/jquery.min.js'></script>
+    <script src='lib/public/bootstrap/dist/bootstrap.bundle.min.js'></script>
+
+    <link rel='stylesheet' type='text/css' href='lib/public/bootstrap/dist/bootstrap.min.css'>
+    <link rel='stylesheet' type='text/css' href='dist/css/index.css'>
+
+    <script type="module"  src='dist/app.js'></script>
+
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+      
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      </style>
+
+
+</head>
+<body>
+
+    <div class="container">
+
+        <h1 id="logo">Container With Most Water</h1>
+
+        <div class="row">
+          <div class="col">
+            
+                <div>
+                  <canvas id="graph-canvas" width="800" height="600" style="border:3px solid grey"></canvas>
+                </div>
+                <div>
+                  <button id='next' type="button" class="btn btn-primary">Next</button>
+                 <!--  <button id='clear' type="button" class="btn btn-primary">Clear</button> --> 
+                </div> 
+
+          </div>
+          <div class="col">
+
+            <div class="row">
+              <div class="col">
+                <h3></h3>
+                <h3>Bars Height</h3>
+                <h3>Bars Distance</h3>
+                <h3>Pointer</h3>
+                <h3>Comparer</h3>
+              </div>
+              <div class="col">
+                <h3 id="barsHeight"> &nbsp;</h3>
+                <h3 id="barsDistance"> &nbsp;</h3>
+                <h3 id="pointer"> &nbsp; </h3>
+                <h3 id="comparer"> &nbsp; </h3>
+              </div>
+            </div> 
+            
+            <br><br>
+
+            <table id="dataTable">
+              <tr>
+                <th>Index</th>
+                <th>Pointer</th>
+                <th>Comparer</th>
+                <th>Height</th>
+                <th>Width</th>
+                <th>Area</th>
+              </tr>
+              <tr>
+              </tr>
+            </table>
+
+
+          </div>
+        </div>
+
+
+    </div>
+    <br><br><br>
+    
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>SCREEN LAYOUT</title>
+    <script src='lib/public/jquery/dist/jquery.min.js'></script>
+    <script src='lib/public/bootstrap/dist/bootstrap.bundle.min.js'></script>
+
+    <link rel='stylesheet' type='text/css' href='lib/public/bootstrap/dist/bootstrap.min.css'>
+    <style>
+        #graph-canvas{
+            margin-top: 20px;
+        }
+        form {
+            margin: 40px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+
+        <canvas id="graph-canvas" width="800" height="600" style="border:1px solid grey;"></canvas>
+
+        <form>
+            <label for="x">X:</label><br>
+            <input type="text" id="x" name="x" ><br>
+            <label for="y">Y:</label><br>
+            <input type="text" id="y" name="y" ><br><br>
+            <button id="Submit" type="button" class="btn btn-info">Submit</button>
+        </form> 
+
+    </div>
+
+
+<script>
+        const canvas = document.getElementById("graph-canvas");
+        const ctx = canvas.getContext("2d");
+
+
+        //Horizontal line
+        ctx.beginPath();
+        ctx.lineWidth = "6";
+        ctx.moveTo(40,560);
+        ctx.lineTo(680,560);
+        ctx.stroke();
+
+
+        //Vertical Lines
+        ctx.beginPath();
+        ctx.lineWidth = "6";
+        ctx.moveTo(40,560);
+        ctx.lineTo(40,520);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = "6";
+        ctx.moveTo(120,560);
+        ctx.lineTo(120,240);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = "6";
+        ctx.moveTo(200,560);
+        ctx.lineTo(200,320);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = "6";
+        ctx.moveTo(280,560);
+        ctx.lineTo(280,480);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = "6";
+        ctx.moveTo(360,560);
+        ctx.lineTo(360,360);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = "6";
+        ctx.moveTo(440,560);
+        ctx.lineTo(440,400);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = "6";
+        ctx.moveTo(520,560);
+        ctx.lineTo(520,240);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = "6";
+        ctx.moveTo(600,560);
+        ctx.lineTo(600,440);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.lineWidth = "6";
+        ctx.moveTo(680,560);
+        ctx.lineTo(680,280);
+        ctx.stroke();
+
+        //Red Rectangle
+        ctx.beginPath();
+        ctx.lineWidth = "2";
+        ctx.strokeStyle = "red";
+        ctx.rect(200, 360, 160, 200);
+        ctx.stroke();
+
+        //Text 
+        ctx.font = "30px Arial";
+        ctx.fillText("1",40,480);
+        ctx.fillText("8",120,200);
+        ctx.fillText("6",200,280);
+        ctx.fillText("2",280,440);
+        ctx.fillText("5",360,320);
+        ctx.fillText("4",440,360);
+        ctx.fillText("8",520,200);
+        ctx.fillText("3",600,400);
+        ctx.fillText("7",680,240);
+
+        $( document ).ready(function() {
+
+            $("#Submit").click(function(){
+
+                let x = $("#x").val();
+                let y = $("#y").val();
+
+                //alert("X: " + x + ", Y: " + y);
+
+                ctx.fillText("*",x,y);
+
+            });
+
+        });
+</script>
+
+</body>
+</html>

@@ -2,7 +2,7 @@ import { Graph } from './models/graph-model.js';
 console.log('App is running!');
 $(function () {
     let graph;
-    let bars = [2, 3, 1, 4];
+    let bars = [1, 8, 6, 2, 5, 4, 8, 3, 7];
     let initTables = true;
     let counterIndexes;
     let counterNext = 0;
@@ -57,9 +57,6 @@ $(function () {
         graph._ctx.rect(x, y, width, height);
         graph._ctx.stroke();
     };
-    graph = new Graph(bars);
-    $("#barsHeight").text(bars.toString());
-    $("#barsDistance").text(graph.distanceBar);
     $('#next').on('click', function () {
         console.log('App - The Next Button was clicked.');
         if (counterNext == counterIndexes) {
@@ -100,6 +97,20 @@ $(function () {
     $('#clear').on('click', function () {
         console.log('App - The Clear Button was clicked.');
         clearCanvas();
+    });
+    $(document).ready(function () {
+        $("#ex1").click(function () {
+            bars = [1, 8, 6, 2, 5, 4, 8, 3, 7];
+            graph = new Graph(bars);
+            $("#barsHeight").text(bars.toString());
+            $("#barsDistance").text(graph.distanceBar);
+        });
+        $("#ex2").click(function () {
+            bars = [2, 3, 1, 4];
+            graph = new Graph(bars);
+            $("#barsHeight").text(bars.toString());
+            $("#barsDistance").text(graph.distanceBar);
+        });
     });
 });
 //# sourceMappingURL=app.js.map

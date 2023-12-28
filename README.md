@@ -64,7 +64,7 @@ Cannot find name describe . Do you need to install type definitions for a test r
 
 ' from origin 'null' has been blocked by CORS policy: Cross origin requests are only supported for protocol schemes: http, data, isolated-app, chrome-extension, chrome, https, chrome-untrusted.
 
-* [How to fix cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https - CODE PROJECT](https://www.codeproject.com/Questions/1195078/How-to-fix-cross-origin-requests-are-only-supporte)
+* [How to fix cross origin requests are only supported for protocol schemes: http, data, chrome, chrome-extension, https - CODE PROJECT](https://www.codeproject.com/Questions/1195078/How-to-fix-cross-origin-requests-are-only-supporte)     
 
 * [How To Fix: "null has been blocked by CORS policy" Error in JavaScript AJAX - YouTube](https://www.youtube.com/watch?v=nx8E5BF0XuE)
 

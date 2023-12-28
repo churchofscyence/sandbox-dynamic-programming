@@ -49,6 +49,12 @@ export class ConsoleUtil{
         return "<span class='primary-util' ><b> "+this.lineCounter+" </b></span>" ;
     }
 
+    rowMessage(message:string,messageType:string){
+
+        let date = this.dateDivider(new Date(), '/');
+        return this.lineNumber () + date + "<span class='"+messageType +"' ><b> "+ message +" </b></span>" +"<br>";
+    }
+
 }
 
 export function sayHello(name:string){

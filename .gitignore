@@ -10,6 +10,7 @@ node_modules/*
 .idea/*
 
 */*/*/.vscode/*
-
-LEETCODE/ContainerWithMostWater/Graphic_GUI/package-lock.json
-LEETCODE/ContainerWithMostWater/Graphic_GUI/package-lock.json
+*/*/.vscode/*
+*/.vscode/*
+.vscode/*
+STARTER/Graphic_GUI/.vscode/launch.json

@@ -57,6 +57,11 @@ $(function () {
         graph._ctx.rect(x, y, width, height);
         graph._ctx.stroke();
     };
+    $('#next').attr("disabled", "disabled");
+    let disableRadioButtons = function () {
+        $("#ex1").attr("disabled", "true");
+        $("#ex2").attr("disabled", "true");
+    };
     $('#next').on('click', function () {
         console.log('App - The Next Button was clicked.');
         if (counterNext == counterIndexes) {
@@ -100,16 +105,25 @@ $(function () {
     });
     $(document).ready(function () {
         $("#ex1").click(function () {
+            disableRadioButtons();
+            $("#next").prop('disabled', false);
+            clearCanvas();
             bars = [1, 8, 6, 2, 5, 4, 8, 3, 7];
             graph = new Graph(bars);
             $("#barsHeight").text(bars.toString());
             $("#barsDistance").text(graph.distanceBar);
         });
         $("#ex2").click(function () {
+            disableRadioButtons();
+            $("#next").prop('disabled', false);
+            clearCanvas();
             bars = [2, 3, 1, 4];
             graph = new Graph(bars);
             $("#barsHeight").text(bars.toString());
             $("#barsDistance").text(graph.distanceBar);
+        });
+        $('#restart').click(function () {
+            location.reload();
         });
     });
 });

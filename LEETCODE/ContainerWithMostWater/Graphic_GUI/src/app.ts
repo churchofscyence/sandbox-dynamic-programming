@@ -94,7 +94,12 @@ $(function(){
           graph._ctx.stroke();
      }
 
+    $('#next').attr("disabled","disabled");
 
+    let disableRadioButtons = function(){
+        $("#ex1").attr("disabled","true");
+        $("#ex2").attr("disabled","true");
+    }
 
     $('#next').on('click' , function(){
          //alert("The Next Button was clicked.");
@@ -166,8 +171,15 @@ $(function(){
     $(document).ready(function () {
 
 
+
+
         $("#ex1").click(function () {
             //alert("Example 1");
+
+            disableRadioButtons();
+            $("#next").prop('disabled', false);
+
+            clearCanvas();
 
             // @ts-ignore
             bars = [1, 8, 6, 2, 5, 4, 8, 3, 7];
@@ -180,6 +192,11 @@ $(function(){
         $("#ex2").click(function () {
             //alert("Example 2");
 
+            disableRadioButtons();
+            $("#next").prop('disabled', false);
+
+            clearCanvas();
+
             // @ts-ignore
             bars = [2, 3, 1, 4];
             graph = new Graph( bars );
@@ -187,6 +204,10 @@ $(function(){
             $("#barsHeight").text( bars.toString() );
             $("#barsDistance").text(graph.distanceBar);
 
+        });
+
+        $('#restart').click(function() {
+            location.reload();
         });
 
 

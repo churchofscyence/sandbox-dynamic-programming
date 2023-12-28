@@ -46,11 +46,19 @@ Ran all test suites.
 
 ```
 
+# Errors
+
+## Mistake have two same spec files within the same project.
 If you get the following error message you have to delete the file in dist/spec folder. 
 
  FAIL  dist/spec/graph-decorator.spec.js
   ● Test suite failed to run
 SyntaxError: Cannot use import statement outside a module
+
+## Can not find Jest package.
+Cannot find name 'describe'. Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.ts(2582)
+⚠ Error(TS2582)  | 
+Cannot find name describe . Do you need to install type definitions for a test runner? Try `npm i --save-dev @types/jest` or `npm i --save-dev @types/mocha`.
 
 # References
 * [TypeScript Tutorial for Beginners - Programming with Mosh](https://www.youtube.com/watch?v=d56mG7DezGs)

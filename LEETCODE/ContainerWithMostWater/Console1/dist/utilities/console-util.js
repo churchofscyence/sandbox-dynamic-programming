@@ -10,9 +10,9 @@ export class ConsoleUtil {
     get lineCounter() { return this._lineCounter; }
     set lineCounter(value) { this._lineCounter = value; }
     paddingDigits(num) {
-        let numSpaces = "";
+        let numSpaces = " ";
         for (let i = 0; i <= this._padding; i++) {
-            numSpaces = numSpaces + " ";
+            numSpaces = numSpaces + " &nbsp;  ";
         }
         return numSpaces + num.toString() + numSpaces;
     }
@@ -50,8 +50,5 @@ export class ConsoleUtil {
         }
         return rowItem;
     }
-}
-export function sayHello(name) {
-    return "Hello, " + name + " !";
 }
 //# sourceMappingURL=console-util.js.map

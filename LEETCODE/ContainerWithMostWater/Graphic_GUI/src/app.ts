@@ -8,8 +8,7 @@ console.log('App is running!');
 $(function(){
 
      let graph: Graph;
-     //let bars: number[] = [1, 8, 6, 2, 5, 4, 8, 3, 7];
-     let bars: number[] = [2, 3, 1, 4];
+     let bars: number[] = [1, 8, 6, 2, 5, 4, 8, 3, 7];
      let initTables: boolean = true;
      let counterIndexes:number;
      let counterNext:number = 0;
@@ -95,10 +94,12 @@ $(function(){
           graph._ctx.stroke();
      }
 
-     graph = new Graph( bars);
+    $('#next').attr("disabled","disabled");
 
-     $("#barsHeight").text( bars.toString() );
-     $("#barsDistance").text(graph.distanceBar);
+    let disableRadioButtons = function(){
+        $("#ex1").attr("disabled","true");
+        $("#ex2").attr("disabled","true");
+    }
 
     $('#next').on('click' , function(){
          //alert("The Next Button was clicked.");
@@ -166,6 +167,52 @@ $(function(){
           clearCanvas();
 
      });
+
+    $(document).ready(function () {
+
+
+
+
+        $("#ex1").click(function () {
+            //alert("Example 1");
+
+            disableRadioButtons();
+            $("#next").prop('disabled', false);
+
+            clearCanvas();
+
+            // @ts-ignore
+            bars = [1, 8, 6, 2, 5, 4, 8, 3, 7];
+            graph = new Graph( bars );
+
+            $("#barsHeight").text( bars.toString() );
+            $("#barsDistance").text(graph.distanceBar);
+
+        });
+        $("#ex2").click(function () {
+            //alert("Example 2");
+
+            disableRadioButtons();
+            $("#next").prop('disabled', false);
+
+            clearCanvas();
+
+            // @ts-ignore
+            bars = [2, 3, 1, 4];
+            graph = new Graph( bars );
+
+            $("#barsHeight").text( bars.toString() );
+            $("#barsDistance").text(graph.distanceBar);
+
+        });
+
+        $('#restart').click(function() {
+            location.reload();
+        });
+
+
+    });
+
 
 
 

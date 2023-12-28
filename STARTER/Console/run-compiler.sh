@@ -10,11 +10,12 @@ echo "Cleaning files..."
 rm -r dist/*
 rm -r lib/*
 
-echo "Running Type Script Compiler..."
-tsc
-
 echo "Running Gulp..."
 gulp
 
-echo "Starting Lite Server..."
-npm start
+echo "Running Type Script Compiler..."
+tsc -w
+
+
+
+

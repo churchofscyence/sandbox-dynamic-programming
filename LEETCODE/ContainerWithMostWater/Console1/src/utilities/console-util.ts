@@ -17,10 +17,10 @@ export class ConsoleUtil{
 
     paddingDigits (num: number) {
 
-        let numSpaces = "";
+        let numSpaces = " ";
 
         for (let i = 0; i <= this._padding; i++) {
-            numSpaces= numSpaces + " ";
+            numSpaces= numSpaces + " &nbsp;  ";
         }
 
         return numSpaces + num.toString() + numSpaces;
@@ -71,10 +71,6 @@ export class ConsoleUtil{
         return rowItem;
     }
 
-}
-
-export function sayHello(name:string){
-    return "Hello, " + name +" !";
 }
 
 

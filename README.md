@@ -68,6 +68,22 @@ Cannot find name describe . Do you need to install type definitions for a test r
 
 * [How To Fix: "null has been blocked by CORS policy" Error in JavaScript AJAX - YouTube](https://www.youtube.com/watch?v=nx8E5BF0XuE)
 
+## TypeScript Error (TS6133) - Variable declared but its value is never read.
+
+[8:46:46 PM] File change detected. Starting incremental compilation...
+
+src/app.ts:28:9 - error TS6133: 'result' is declared but its value is never read.
+
+28     let result = SolutionUtil.generateCompareIndex(points);
+           ~~~~~~
+
+[8:46:46 PM] Found 1 error. Watching for file changes.
+
+#### Code Solution       
+```
+// @ts-ignore
+let result = SolutionUtil.generateCompareIndex(points);
+```
 
 # References
 * [TypeScript Tutorial for Beginners - Programming with Mosh](https://www.youtube.com/watch?v=d56mG7DezGs)

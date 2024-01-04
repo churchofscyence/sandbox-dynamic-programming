@@ -88,5 +88,5 @@ let result = SolutionUtil.generateCompareIndex(points);
 # References
 * [TypeScript Tutorial for Beginners - Programming with Mosh](https://www.youtube.com/watch?v=d56mG7DezGs)
 * [Using Decorators in Typescript - hackernoon](https://hackernoon.com/using-decorators-in-typescript)
-* [How to write test cases in typescript - Mediun](https://bootcamp.uxdesign.cc/how-to-write-test-cases-in-typescript-fa7a263b7833)     
+* [How to write test cases in typescript - Level Up Coding](https://bootcamp.uxdesign.cc/how-to-write-test-cases-in-typescript-fa7a263b7833)     
 * [Canvas API - w3schools](https://www.w3schools.com/jsref/api_canvas.asp)          
